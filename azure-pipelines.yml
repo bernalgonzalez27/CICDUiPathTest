@@ -10,7 +10,7 @@ stages:
     displayName: Build Package
     jobs: 
     - job: BuildPackage
-      pool: WindowsAgent(s)CICDTest
+      pool: Default
       steps:    
       - task: UiPathPack@2
         inputs:
