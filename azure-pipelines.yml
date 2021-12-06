@@ -10,7 +10,7 @@ stages:
     displayName: Build Package
     jobs: 
     - job: BuildPackage
-      pool: DESKTOP-H190C5U
+      pool: WindowsAgent(s)CICDTest
       steps:    
       - task: UiPathPack@2
         inputs:
