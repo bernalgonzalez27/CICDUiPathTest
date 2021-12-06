@@ -1,18 +1,16 @@
 # Yaml Test 1.0
 # Creation of stages and jobs
-
 trigger:
   - master
-# variables:
-#  - group: DEV
+variables:
+  - group: DEV
 
 stages:
   - stage: Build
     displayName: Build Package
     jobs: 
     - job: BuildPackage
-      pool:
-        vmImage: DESKTOP-H190C5U
+      pool: DESKTOP-H190C5U
       steps:    
       - task: UiPathPack@2
         inputs:
