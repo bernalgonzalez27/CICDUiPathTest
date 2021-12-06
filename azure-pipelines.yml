@@ -2,8 +2,8 @@
 # Creation of stages and jobs
 trigger:
   - master
-variables:
-  - group: DEV
+#variables:
+#  - group: DEV
 
 stages:
   - stage: Build
