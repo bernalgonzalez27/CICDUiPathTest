@@ -8,7 +8,7 @@ jobs:
     displayName: UiPath Pack
     inputs:
       versionType: 'AutoVersion'
-      projectJsonPath: 'project.json'
+      projectJsonPath: '$(Build.SourcesDirectory)\project.json'
       outputType: 'Process'
       orchestratorConnection: 'CICDOrchConnectionTest'
       traceLevel: 'Information'
