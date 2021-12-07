@@ -1,10 +1,14 @@
-pool: default
-steps:
-- task: UiPathPack@2
-  inputs:
-    versionType: 'AutoVersion'
-    projectJsonPath: 'project.json'
-    outputType: 'Process'
-    orchestratorConnection: 'CICDOrchConnectionTest'
-    outputPath: '$(Build.ArtifactStagingDirectory)\Output'
-
+jobs:
+- job: Job_1
+  displayName: Agent job 1
+  pool: default
+  steps:
+  - checkout: self
+  - task: UiPathPack@2
+    displayName: UiPath Pack
+    inputs:
+      versionType: 'AutoVersion'
+      projectJsonPath: 'project.json'
+      outputType: 'Process'
+      orchestratorConnection: 'CICDOrchConnectionTest'
+      traceLevel: 'Information'
