@@ -22,4 +22,7 @@ stages:
             orchestratorConnection: 'CICDOrchConnectionTest'
             outputPath: '$(Build.ArtifactStagingDirectory)'
             traceLevel: Information
+        - publish: $(Build.ArtifactStagingDirectory)
+          artifact: drop
+
 
