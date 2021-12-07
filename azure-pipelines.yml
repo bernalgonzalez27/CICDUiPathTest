@@ -38,7 +38,7 @@ stages:
         - task: UiPathDeploy@2
           inputs:
             orchestratorConnection: 'CICDOrchConnectionTest'
-            packagesPath: '$(Pipeline.Workspace)'
+            packagesPath: '$(Pipeline.Workspace)/$(Build.ArtifactStagingDirectory)'
             folderName: 'Shared'
             entryPoints: 'Main.xaml'
             traceLevel: 'Information'
