@@ -22,6 +22,10 @@ stages:
             orchestratorConnection: 'CICDOrchConnectionTest'
             outputPath: '$(Build.ArtifactStagingDirectory)'
             traceLevel: Information
+        - task: PublishPipelineArtifact@1
+          inputs:
+            targetPath: '$(Pipeline.Workspace)'
+            artifactName: drop
        # - publish: $(Build.ArtifactStagingDirectory)
          # artifact: drop
 
