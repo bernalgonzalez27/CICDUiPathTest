@@ -20,10 +20,10 @@ stages:
             projectJsonPath: 'project.json'
             outputType: 'Process'
             orchestratorConnection: 'CICDOrchConnectionTest'
-            outputPath: '$(Build.ArtifactStagingDirectory)'
+            outputPath: '$(Agent.BuildDirectory)'
             traceLevel: Information
-        - publish: $(Build.ArtifactStagingDirectory)
-          artifact: drop
+        #- publish: $(Build.ArtifactStagingDirectory)
+          #artifact: drop
   - stage: DeployArtifact
     dependsOn: BuildArtifact
     condition: succeeded()
@@ -40,7 +40,7 @@ stages:
         - task: UiPathDeploy@2
           inputs:
             orchestratorConnection: 'CICDOrchConnectionTest'
-            packagesPath: '$(Pipeline.Workspace)/drop/'
+            packagesPath: '$(Agent.BuildDirectory)'
             folderName: 'Shared'
             entryPoints: 'Main.xaml'
             traceLevel: 'Information'
