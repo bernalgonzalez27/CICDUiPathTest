@@ -1,17 +1,8 @@
-trigger:
-- main
-jobs: 
-    - job: BuildPackage
-      pool: 
-        name: Default
-        demands:
-        - agent.name -equals JuanMachine
-      steps:
-        - task: UiPathPack@2
-          inputs:
-            versionType: 'AutoVersion'
-            projectJsonPath: 'project.json'
-            outputType: 'Process'
-            orchestratorConnection: 'CICDOrchConnectionTest'
-            outputPath: '$(Build.ArtifactStagingDirectory)\Output'
-            traceLevel: 'Information'
+- task: UiPathPack@2
+  inputs:
+    versionType: 'AutoVersion'
+    projectJsonPath: 'project.json'
+    outputType: 'Process'
+    orchestratorConnection: 'CICDOrchConnectionTest'
+    outputPath: '$(Build.ArtifactStagingDirectory)\Output'
+
