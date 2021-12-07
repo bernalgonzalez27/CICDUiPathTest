@@ -4,7 +4,10 @@ trigger:
 jobs:
 - job: Job_1
   displayName: Agent job 1
-  pool: default
+  pool: 
+    name: default
+    demands: 
+    - agent.name -equals JuanMachine
   steps:
   - checkout: self
   - task: UiPathPack@2
