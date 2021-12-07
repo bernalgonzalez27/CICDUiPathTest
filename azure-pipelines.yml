@@ -1,28 +1,23 @@
 trigger:
 - main
 
-jobs:
-- job: Job_1
-  displayName: Agent job 1
-  pool: 
-    name: default
-    demands: 
-    - agent.name -equals JuanMachine
-  steps:
-  - checkout: self
-  - task: UiPathPack@2
-    displayName: UiPath Pack
-    inputs:
-      versionType: 'AutoVersion'
-      projectJsonPath: 'project.json'
-      outputType: 'Process'
-      orchestratorConnection: 'CICDOrchConnectionTest'
-      traceLevel: Information
-  - task: UiPathTest@2
-    displayName: UiPath Test
-    inputs:
-      testTarget: 'TestProject'
-      orchestratorConnection: 'CICDOrchConnectionTest'
-      testProjectPath: 'TestCase.xaml'
-      folderName: 'Shared'
-      traceLevel: 'Information'
+stages:
+  - stage: BuildArtifact
+    displayName: Build Artifact
+    jobs:
+      - job: Job_1
+        displayName: Agent job 1
+        pool: 
+          name: default
+          demands: 
+          - agent.name -equals JuanMachine
+        steps:
+        - checkout: self
+        - task: UiPathPack@2
+          displayName: UiPath Pack
+          inputs:
+            versionType: 'AutoVersion'
+            projectJsonPath: 'project.json'
+            outputType: 'Process'
+            orchestratorConnection: 'CICDOrchConnectionTest'
+            traceLevel: Information
