@@ -22,25 +22,7 @@ stages:
             orchestratorConnection: 'CICDOrchConnectionTest'
             outputPath: '$(Build.ArtifactStagingDirectory)'
             traceLevel: Information
-        - publish: $(Build.ArtifactStagingDirectory)
-          artifact: drop
-  - stage: DeployArtifact
-    displayName: Deploy Artifact
-    jobs:
-      - job: Job_2
-        displayName: Agent job 2
-        pool: 
-          name: default
-          demands: 
-          - agent.name -equals JuanMachine
-        steps:
-        - checkout: self
-        - task: UiPathDeploy@2
-          inputs:
-            orchestratorConnection: 'CICDOrchConnectionTest'
-            packagesPath: '$(Pipeline.Workspace)\drop\'
-            folderName: 'Shared'
-            entryPoints: 'Main.xaml'
-            traceLevel: 'Information'
+       # - publish: $(Build.ArtifactStagingDirectory)
+         # artifact: drop
 
 
