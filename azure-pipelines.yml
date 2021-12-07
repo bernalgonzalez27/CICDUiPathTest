@@ -1,20 +1,17 @@
 trigger:
 - master
 
-stages:
-    - stage: Build
-      displayName: Build Package
-      jobs:
-      - job: BuildPackage
-        pool:
-           name: Default
-           demands:
-           - agent.name -equals JuanMachine
-        steps:
+jobs:
+  - job: BuildPackage
+    pool:
+      name: Default
+      demands:
+      - agent.name -equals JuanMachine
+    steps:
         - task: UiPathPack@2
           inputs:
             versionType: 'AutoVersion'
-            projectJsonPath: 'project.json'
+            projectJsonPath: '$(Build.SourcesDirectory)\project.json'
             outputType: 'Process'
             orchestratorConnection: 'CICDOrchConnectionTest'
             outputPath: '$(Build.ArtifactStagingDirectory)\Output'
