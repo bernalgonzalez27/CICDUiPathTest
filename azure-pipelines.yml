@@ -18,3 +18,11 @@ jobs:
       outputType: 'Process'
       orchestratorConnection: 'CICDOrchConnectionTest'
       traceLevel: Information
+  - task: UiPathTest@2
+    displayName: UiPath Test
+    inputs:
+      testTarget: 'TestProject'
+      orchestratorConnection: 'CICDOrchConnectionTest'
+      testProjectPath: 'TestCase.xaml'
+      folderName: 'Shared'
+      traceLevel: 'Information'
