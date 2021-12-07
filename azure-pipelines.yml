@@ -10,7 +10,10 @@ stages:
     displayName: Build Package
     jobs: 
     - job: BuildPackage
-      pool: Default
+      pool: 
+        name: Default
+        demands: 
+        - agent.name -equals JuanMachine
       steps:    
       - task: UiPathPack@2
         inputs:
