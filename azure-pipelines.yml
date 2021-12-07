@@ -1,26 +1,21 @@
-# Yaml Test 1.0
-# Creation of stages and jobs
 trigger:
-  - master
-#variables:
-#  - group: DEV
+- main
 
 stages:
-  - stage: Build
-    displayName: Build Package
-    jobs: 
-    - job: BuildPackage
-      pool: 
-        name: Default
-        demands: 
-        - agent.name -equals JuanMachine
-      steps:    
-      - task: UiPathPack@2
-        inputs:
-          versionType: 'AutoVersion'
-          projectJsonPath: '$(Build.SourcesDirectory)\project.json'
-          outputType: 'Process'
-          orchestratorConnection: 'CICDOrchConnectionTest'
-          outputPath: '$(Build.ArtifactStagingDirectory)'
-      - publish: $(Build.ArtifactStagingDirectory)
-        artifact: drop
+    - stage: Build
+      displayName: Build Package
+      jobs:
+      - job: BuildPackage
+        pool:
+           name: Default
+           demands:
+           - agent.name -equals JuanMachine
+        steps:
+        - task: uipath.vsts-uipath-package.uipath-pack.UiPathPack@2
+          displayName: 'UiPath Pack'
+          inputs:
+            versionType: AutoVersion
+            projectJsonPath: project.json
+            outputType: Process
+            orchestratorConnection: CICDOrchConnectionTest
+            traceLevel: Information
