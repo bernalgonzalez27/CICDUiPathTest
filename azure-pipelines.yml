@@ -1,5 +1,5 @@
 trigger:
-- main
+- master
 
 stages:
     - stage: Build
@@ -11,11 +11,12 @@ stages:
            demands:
            - agent.name -equals JuanMachine
         steps:
-        - task: uipath.vsts-uipath-package.uipath-pack.UiPathPack@2
-          displayName: 'UiPath Pack'
+        - task: UiPathPack@2
           inputs:
-            versionType: AutoVersion
-            projectJsonPath: project.json
-            outputType: Process
-            orchestratorConnection: CICDOrchConnectionTest
-            traceLevel: Information
+            versionType: 'AutoVersion'
+            projectJsonPath: 'project.json'
+            outputType: 'Process'
+            orchestratorConnection: 'CICDOrchConnectionTest'
+            outputPath: '$(Build.ArtifactStagingDirectory)\Output'
+            runWorkflowAnalysis: true
+            traceLevel: 'Information'
