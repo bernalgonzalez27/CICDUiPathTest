@@ -20,4 +20,6 @@ stages:
             projectJsonPath: 'project.json'
             outputType: 'Process'
             orchestratorConnection: 'CICDOrchConnectionTest'
+            outputPath: '$(Build.ArtifactStagingDirectory)'
             traceLevel: Information
+
