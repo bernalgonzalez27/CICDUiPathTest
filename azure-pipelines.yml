@@ -1,5 +1,5 @@
-trigger:
-- main
+#trigger:
+#- main
 
 stages:
   - stage: BuildArtifact
@@ -59,9 +59,7 @@ stages:
           inputs:
             testTarget: 'TestProject'
             orchestratorConnection: 'CICDOrchConnectionTest'
-            testProjectPath: 'project.json'
             folderName: 'Shared'
             traceLevel: 'Information'
-
 
 
