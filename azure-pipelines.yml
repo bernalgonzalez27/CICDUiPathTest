@@ -59,7 +59,7 @@ stages:
           inputs:
             testTarget: 'TestProject'
             orchestratorConnection: 'CICDOrchConnectionTest'
-            testProjectPath: 'TestCase.xaml'
+            testProjectPath: 'project.json'
             folderName: 'Shared'
             traceLevel: 'Information'
 
