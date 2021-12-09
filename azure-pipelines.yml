@@ -20,7 +20,7 @@ stages:
             projectJsonPath: 'project.json'
             outputType: 'Process'
             orchestratorConnection: 'CICDOrchConnectionTest'
-            outputPath: '$(Agent.BuildDirectory)'
+            outputPath: '$(Agent.BuildDirectory)/$(BuildID)'
             traceLevel: Information
         #- publish: $(Build.ArtifactStagingDirectory)
           #artifact: drop
@@ -40,7 +40,7 @@ stages:
         - task: UiPathDeploy@2
           inputs:
             orchestratorConnection: 'CICDOrchConnectionTest'
-            packagesPath: '$(Agent.BuildDirectory)'
+            packagesPath: '$(Agent.BuildDirectory)/$(BuildID)'
             folderName: 'Shared'
             entryPoints: 'Main.xaml'
             traceLevel: 'Information'
