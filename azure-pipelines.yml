@@ -44,26 +44,6 @@ stages:
             folderName: 'Shared'
             entryPoints: 'Main.xaml'
             traceLevel: 'Information'
-  - stage: TestArtifactCode
-    dependsOn: DeployArtifact
-    condition: succeeded()
-    displayName: Test Artifact Code
-    jobs:
-      - job: Job_3
-        displayName: Agent job 3
-        pool: 
-          name: default
-          demands: 
-          - agent.name -equals JuanMachine
-        steps:
-        - checkout: self
-        - task: UiPathTest@2
-          inputs:
-            testTarget: 'TestProject'
-            orchestratorConnection: 'CICDOrchConnectionTest'
-            testProjectPath: 'TestCase.xaml'
-            folderName: 'Shared'
-            traceLevel: 'Information'
 
 
 
