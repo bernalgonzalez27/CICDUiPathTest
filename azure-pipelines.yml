@@ -2,49 +2,9 @@
 #- main
 
 stages:
-  - stage: BuildArtifact
-    displayName: Build Artifact
-    jobs:
-      - job: Job_1
-        displayName: Agent job 1
-        pool: 
-          name: default
-          demands: 
-          - agent.name -equals JuanMachine
-        steps:
-        - checkout: self
-        - task: UiPathPack@2
-          displayName: UiPath Pack
-          inputs:
-            versionType: 'AutoVersion'
-            projectJsonPath: 'project.json'
-            outputType: 'Process'
-            orchestratorConnection: 'CICDOrchConnectionTest'
-            outputPath: '$(Agent.BuildDirectory)/$(Build.BuildNumber)'
-            traceLevel: Information
-  - stage: DeployArtifact
-    dependsOn: BuildArtifact
-    condition: succeeded()
-    displayName: Deploy Artifact
-    jobs:
-      - job: Job_2
-        displayName: Agent job 2
-        pool: 
-          name: default
-          demands: 
-          - agent.name -equals JuanMachine
-        steps:
-        - checkout: self
-        - task: UiPathDeploy@2
-          inputs:
-            orchestratorConnection: 'CICDOrchConnectionTest'
-            packagesPath: '$(Agent.BuildDirectory)/$(Build.BuildNumber)'
-            folderName: 'Shared'
-            entryPoints: 'Main.xaml'
-            traceLevel: 'Information'
   - stage: TestArtifactCode
-    dependsOn: DeployArtifact
-    condition: succeeded()
+    #dependsOn: DeployArtifact
+    #condition: succeeded()
     displayName: Test Artifact Code
     jobs:
       - job: Job_3
