@@ -11,6 +11,7 @@ stages:
           name: default
           demands: 
           - agent.name -equals JuanMachine
+        environment: 'DEV'
         steps:
         - checkout: self
         - task: UiPathPack@2
