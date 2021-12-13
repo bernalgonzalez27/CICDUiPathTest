@@ -11,7 +11,6 @@ stages:
           name: default
           demands: 
           - agent.name -equals JuanMachine
-        environment: 'DEV'
         steps:
         - checkout: self
         - task: UiPathPack@2
@@ -28,6 +27,8 @@ stages:
     condition: succeeded()
     displayName: Deploy Artifact
     jobs:
+      - deployment: 'DeployToOrch'
+        environment: 'DEV'
       - job: Job_2
         displayName: Agent job 2
         pool: 
