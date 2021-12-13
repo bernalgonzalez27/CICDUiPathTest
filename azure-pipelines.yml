@@ -63,4 +63,3 @@ stages:
             orchestratorConnection: 'CICDOrchConnectionTest'
             folderName: 'Shared'
             traceLevel: 'Information'
-
