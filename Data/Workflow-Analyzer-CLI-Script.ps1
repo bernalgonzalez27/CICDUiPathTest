@@ -1,7 +1,7 @@
 <# Run UiPath Studio's Workflow Analyzer via command line and pipe results to file #>
 
 param (
-    $ProjectFilePath="\project.json",
+    $ProjectFilePath=".\project.json",
     $ExecutableFilePath="C:\Users\juanb\AppData\Local\Programs\UiPath\Studio\UiPath.Studio.CommandLine.exe",
     $OutputFilePath=".\$(Get-Date -Format 'yyyy-MM-dd-HH-mm-ss')-Workflow-Analysis.json"
     )
