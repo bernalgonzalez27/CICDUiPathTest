@@ -66,10 +66,10 @@ stages:
   - stage: ArtifactCodeQuality
     dependsOn: TestArtifactCode
     condition: succeeded()
-    displayName: Test Artifact Code
+    displayName: Artifact Code Quality
     jobs:
-      - job: Job_3
-        displayName: Agent job 3
+      - job: Job_4
+        displayName: Agent job 4
         pool: 
           name: default
           demands: 
@@ -78,4 +78,4 @@ stages:
         - checkout: self
         - task: PowerShell@2
           inputs:
-            filePath: '$(Agent.WorkFolder)\Data\Workflow-Analyzer-CLI-Script.ps1'
+            filePath: '\Data\Workflow-Analyzer-CLI-Script.ps1'
