@@ -22,6 +22,22 @@ stages:
             orchestratorConnection: 'CICDOrchConnectionTest'
             outputPath: '$(Agent.BuildDirectory)/$(Build.BuildNumber)'
             traceLevel: Information
+  - stage: ArtifactCodeQuality
+    #dependsOn: TestArtifactCode
+    #condition: succeeded()
+    displayName: Artifact Code Quality
+    jobs:
+      - job: Job_4
+        displayName: Agent job 4
+        pool: 
+          name: default
+          demands: 
+          - agent.name -equals JuanMachine
+        steps:
+        - checkout: self
+        - task: PowerShell@2
+          inputs:
+            filePath: '$(Agent.BuildDirectory)/s/Data/Workflow-Analyzer-CLI-Script.ps1'
   - stage: DeployArtifact
     dependsOn: BuildArtifact
     condition: succeeded()
@@ -63,19 +79,3 @@ stages:
             orchestratorConnection: 'CICDOrchConnectionTest'
             folderName: 'Shared'
             traceLevel: 'Information'
-  - stage: ArtifactCodeQuality
-    dependsOn: TestArtifactCode
-    condition: succeeded()
-    displayName: Artifact Code Quality
-    jobs:
-      - job: Job_4
-        displayName: Agent job 4
-        pool: 
-          name: default
-          demands: 
-          - agent.name -equals JuanMachine
-        steps:
-        - checkout: self
-        - task: PowerShell@2
-          inputs:
-            filePath: '$(Agent.BuildDirectory)/s/Data/Workflow-Analyzer-CLI-Script.ps1'
